@@ -9,6 +9,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
+find_package(OpenCV)
+
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES image_stream_opencv

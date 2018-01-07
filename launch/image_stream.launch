@@ -1,0 +1,18 @@
+<launch>
+	<arg name="nome_grupo" default="camera" />
+	<arg name="caminho_arquivo_fonte" default="/home/lennedy/software/catkin_ws/src/image_stream_opencv/imagens/IMG_5210.jpg" />
+	<arg name="visualize" default="false"/>
+   
+   	<!-- images will be published at /camera_name/image with the image transports plugins (e.g.: compressed) installed -->
+	<group ns= "$(arg nome_grupo)">		
+		<node pkg="image_stream_opencv" name="camera" type="readImage">
+			<param name="caminho_arquivo_fonte" type="string" value="$(arg caminho_arquivo_fonte)" />
+		</node>	
+
+    <node if="$(arg visualize)" name="$(arg nome_grupo)_image_view" pkg="image_view" type="image_view">
+    	<remap from="image" to="image_raw" />
+    </node>
+
+	</group>
+
+</launch>
